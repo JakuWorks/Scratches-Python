@@ -7,7 +7,7 @@
 - Using Python to automate tasks, process data and save time.
 
 ## Time
-- I began documenting these scripts on **26.06.2023**.
+- I began documenting these scripts on 26.06.2023
 
 ## Other Information
 There is additional information inside each Scratch
