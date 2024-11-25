@@ -173,7 +173,7 @@ def ask_for_level_range() -> tuple[int, int]:
             break
 
     while True:
-        maximum_input: str = fancy_input('You\'re defining the RANGE of immortal boss levels to display HP for. Please enter the MINIMUM level in your range: ')
+        maximum_input: str = fancy_input('You\'re defining the RANGE of immortal boss levels to display HP for. Please enter the MAXIMUM level in your range: ')
         maximum_to_int: Union[Literal[False], int] = try_to_int(maximum_input)
 
         if maximum_to_int is False:
