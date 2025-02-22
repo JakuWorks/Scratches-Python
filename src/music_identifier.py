@@ -3,7 +3,7 @@
 OVERVIEW
 
 REQUIREMENTS (USAGE)
-- audd.io AUDIO FILES API KEY!!! (there is a free trial, no card required) 
+- AudD.io AUDIO FILES API KEY!!! (there is a free trial, no card required) 
 - Modern python version!
 - shazamio
 - requests
@@ -18,6 +18,9 @@ REQUIREMENTS (development)
 IMPORTANT:
 Put your songs in a folder called "songs" in the same directory as this script
 Then run this script normally and follow the directions
+
+NOTE:
+If you don't want to use the (paid) AudD.io api - simply enter an incorrect key.
 
 Date created:
 18.02.2025
