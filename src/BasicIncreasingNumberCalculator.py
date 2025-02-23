@@ -7,8 +7,9 @@ REQUIREMENTS
 - humanize
 
 Date created: around 2023
+THIS IS A SIMPLE CALCULATOR CLI
 This script takes in an Increase Per Second and Time (inputted in a flexible human way)
-This script returns the final number after the Time
+This script returns the final number after the Time passes
 The number starts at 0
 ----------------------------------------------------------------------------------------
 """
