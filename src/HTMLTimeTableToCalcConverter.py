@@ -9,6 +9,8 @@ REQUIREMENTS
 Date created: around 2023
 This is a simple script I wrote to convert some HTML Time Table into the Libre Office Calc format
 You must statically define the file path!
+
+THIS SCRIPT IS VERY SIMPLE AND WAS WRITTEN FOR ONLY ONE SPECIFIC FORMAT. IT WILL 99% NOT WORK FOR YOUR USE CASE
 ----------------------------------------------------------------------------------------
 """
 
