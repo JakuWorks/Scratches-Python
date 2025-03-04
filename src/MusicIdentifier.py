@@ -46,7 +46,6 @@ AUDD_API_KEY: str = input("Enter your AudD API Key: ")
 SHAZAMIO_DELAY: float = 5.0
 AUDD_DELAY: float = 5.0
 
-PRINT_METADATA: bool = True
 DEBUG_LOGS_ENABLED: bool = True
 
 RESULTS_FILE_NAME: str = r"music_identifier_results.txt"
@@ -89,11 +88,6 @@ def pad_string_from_right(string: str, length: int, padding: str = " "):
 
 def warn(message: str) -> None:
     print(f"WARNING | {message}")
-
-
-def print_metadata_info(songs: Iterable[Path]):
-    for song in songs:
-        print(song.stat())
 
 
 def get_shazamio_hits(songs: Iterable[Path]) -> dict[Path, ShazamioHitData]:
@@ -229,12 +223,6 @@ def main() -> None:
 
     selected_files: list[str] = [str(target) for target in targets]
     debug(f"Selected Files: | {' | '.join(selected_files)}", True, True)
-
-    if PRINT_METADATA:
-        print("< --------------- METADATA --------------- >", False, True)
-        print_metadata_info(targets)
-        print("\n")
-        # ^ THIS FUNCTION'S INFORMATION IS NOT CONSIDERED A "HIT" HOWEVER IT MAY STILL BE USEFUL
 
     debug("< --------------- SHAZAM --------------- >", False, True)
     shazamio_hits: dict[Path, HitData] = cast(
