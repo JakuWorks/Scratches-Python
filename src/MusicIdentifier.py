@@ -4,6 +4,7 @@ OVERVIEW
 
 REQUIREMENTS (USAGE)
 - AudD.io AUDIO FILES API KEY!!! (there is a free trial, no card required) 
+^ THIS IS OPTIONAL. YOU CAN PASS AN INVALID API KEY TO DISABLE AUDD.IO
 - Modern python version!
 - shazamio
 - requests
