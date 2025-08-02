@@ -12,4 +12,4 @@
 ## Other Information
 There is additional information inside each Scratch
 
-All scratches are located in the `./src` directory in this repository
+All scratches are located in the `./src` directory of this repository
