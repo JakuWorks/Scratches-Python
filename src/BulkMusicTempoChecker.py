@@ -37,6 +37,7 @@ import concurrent.futures
 import soundfile as sf # Stubs aren't available # type: ignore
 import librosa
 import numpy as np
+import sys
 
 
 # SETTINGS
@@ -48,16 +49,18 @@ OUTPUT_ONLY_FILENAME_AS_TITLE: bool = False  # Disabling will cause the entire (
 OUTPUT_SONG_TEMPOS_TABLE_SEPARATOR: str = " | "
 OUTPUT_SONG_TEMPOS_TABLE_DIVIDER_CHAR: str = "-"
 OUTPUT_SONG_TEMPOS_TABLE_DIVIDER_AMOUNT: int = 20
-GET_SONG_TEMPOS_MAX_WORKERS: int = 12  # Number of workers to handle the processing
-LOG_ENABLED: bool = True
+GET_SONG_TEMPOS_MAX_WORKERS: int = 8  # Number of workers to handle the processing (higher amount increases cpu load)
+LOGS_ENABLED: bool = True
 LOGS_SEPARATOR: str = " | "
+IS_MISSING_SONGS_DIR_FATAL: bool = True
+
 
 # PROGRAM
 # fmt:on
 s: str = LOGS_SEPARATOR
 ts: str = OUTPUT_SONG_TEMPOS_TABLE_SEPARATOR
 
-if LOG_ENABLED:
+if LOGS_ENABLED:
 
     def log(msg: str) -> None:
         caller: str = get_caller()
@@ -104,8 +107,19 @@ def is_file_allowed(file: Path) -> bool:
     return False
 
 
-def collect_files(path: Path) -> list[Path]:
+def collect_song_files(path: Path, fatal: bool) -> list[Path]:
     log(f"Collecting files{s}{path=}")
+    log(f"Ensuring path exists{s}{path=}")
+    if not path.exists(follow_symlinks=True):
+        # os.walk allows its first arguments to be a symlink
+        print(
+            f"Songs folder not found'! Please create a folder at '{SONGS_PATH.absolute()}' and put your song files inside it."
+        )
+        if fatal:
+            print("The program will exit now")
+            sys.exit(1)
+        else:
+            return []
     files_p: list[Path] = []
     for root, _, files in os.walk(path):
         root_p: Path = Path(root)
@@ -156,7 +170,7 @@ def get_song_tempos(files: list[Path]) -> list[tuple[Path, float]]:
     ) as exec:
         tempos: list[float] = list(exec.map(get_tempo, files))
     song_tempos: list[tuple[Path, float]] = list(zip(files, tempos))
-    log("Finished getting song tempos")
+    log("Finished getting many song tempos")
     return song_tempos
 
 
@@ -211,15 +225,15 @@ def print_formatted_song_tempos(song_tempos: str) -> None:
     header_lines: list[str] = [divider, f"TEMPO{ts}TITLE"]
     footer_lines: list[str] = [divider]
     lines: list[str] = [*header_lines, song_tempos, *footer_lines]
-    text: str = "\n".join(lines)
+    text: str = "\n".join(lines)  # hard-coded newline here may be a bad idea
     print(text)
 
 
 def main() -> None:
     if not OUTPUT_RAW:
         print("Working...")
-    log(f"Allowed Extensions Are:{s}{s.join(get_allowed_extensions())}")
-    files: list[Path] = collect_files(SONGS_PATH)
+        print(f"Allowed Extensions Are:{s}{s.join(get_allowed_extensions())}")
+    files: list[Path] = collect_song_files(SONGS_PATH, fatal=IS_MISSING_SONGS_DIR_FATAL)
     song_tempos: list[tuple[Path, float]] = get_song_tempos(files)
     if OUTPUT_SORT:
         song_tempos = sort_song_tempos(song_tempos, reverse=OUTPUT_SORT_REVERSE)
@@ -233,6 +247,7 @@ def main() -> None:
         print(formatted)
     else:
         print_formatted_song_tempos(song_tempos=formatted)
+        print("Program end")
 
 
 if __name__ == "__main__":
