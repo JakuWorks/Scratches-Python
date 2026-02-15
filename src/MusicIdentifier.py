@@ -13,7 +13,7 @@ REQUIREMENTS (development)
 - shazamio
 - requests
 - types-requests
-- mypy
+- pyright
 - black
 
 IMPORTANT:
