@@ -8,7 +8,7 @@ REQUIREMENTS (USAGE)
 - soundfile
 - librosa
 REQUIREMENTS (development)
-- mypy
+- pyright
 - black
 
 IMPORTANT:
