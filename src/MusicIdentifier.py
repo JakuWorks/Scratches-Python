@@ -9,9 +9,6 @@ REQUIREMENTS (USAGE)
 - shazamio
 - requests
 REQUIREMENTS (development)
-- Modern python version!
-- shazamio
-- requests
 - types-requests
 - pyright
 - black
