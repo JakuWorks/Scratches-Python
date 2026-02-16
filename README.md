@@ -3,8 +3,8 @@
 ## Used Languages
 - Python
 
-## Learnt Skills
-- Using Python to automate tasks, process data and save time.
+## Learned Skills
+- Using Python to automate tasks, process data, and save time.
 
 ## Time
 - I began documenting scripts on 26.06.2023
@@ -12,4 +12,4 @@
 ## Other Information
 There is additional information inside each Scratch
 
-All scratches are located in the `./src` directory of this repository
+All scratches are located in the `./src` directory of this repository.
