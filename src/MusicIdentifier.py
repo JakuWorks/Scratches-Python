@@ -6,7 +6,7 @@ REQUIREMENTS (USAGE)
 - AudD.io AUDIO FILES API KEY!!! (there is a free trial, no card required) 
 ^ THIS IS OPTIONAL. YOU CAN PASS AN INVALID API KEY TO DISABLE AUDD.IO
 - Python 3.12
-- shazamio==8.1.0
+- shazamio==0.8.1
 - requests (any modren version should work)
 REQUIREMENTS (development)
 - types-requests
