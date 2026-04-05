@@ -21,7 +21,8 @@ Put your songs in a folder called "songs" in the same directory as this script
 Then run this script normally and follow the directions
 
 NOTE:
-If you don't want to use the (paid) AudD.io api - simply enter an incorrect key.
+If you don't want to use the (paid) AudD.io api - simply enter an incorrect key. (or leave the field empty)
+The AuD.io api sometimes gives results even without a key.
 
 Date created:
 18.02.2025
