@@ -5,12 +5,15 @@ OVERVIEW
 REQUIREMENTS (USAGE)
 - AudD.io AUDIO FILES API KEY!!! (there is a free trial, no card required) 
 ^ THIS IS OPTIONAL. YOU CAN PASS AN INVALID API KEY TO DISABLE AUDD.IO
-- Python 3.12
-- shazamio==0.8.1
-- requests (any modren version should work)
+- Modern python version!
+- shazamio
+- requests
 REQUIREMENTS (development)
+- Modern python version!
+- shazamio
+- requests
 - types-requests
-- pyright
+- mypy
 - black
 
 IMPORTANT:
@@ -30,6 +33,7 @@ Also keep in mind that the APIs used are NOT perfect. From my personal results -
 import time
 import asyncio
 import io
+import logging
 from typing import cast, Iterable, Any, Coroutine, TypedDict, Protocol, Union
 from pathlib import Path
 import shazamio  # type: ignore # Ignore missing stubs
@@ -212,6 +216,8 @@ def save_hits(
 
 
 def main() -> None:
+    logging.basicConfig(level=logging.CRITICAL)
+
     root: Path = Path(ROOT_DIR)
     songs: list[Path] = sorted(list(root.iterdir()))
 
